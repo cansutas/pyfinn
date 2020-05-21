@@ -62,7 +62,7 @@ def _calc_price(ad_data):
 
 
 def scrape_ad(finnkode):
-    url = 'https://www.finn.no/realestate/homes/ad.html?finnkode={code}'.format(code=finnkode)
+    url = 'https://www.finn.no/realestate/lettings/ad.html?finnkode={code}'.format(code=finnkode)
     r = session.get(url, headers={'user-agent': ua.random})
 
     r.raise_for_status()
