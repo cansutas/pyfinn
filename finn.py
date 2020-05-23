@@ -55,10 +55,6 @@ def _scrape_viewings(html):
     return list(viewings)
 
 
-def _calc_price(ad_data):
-    debt = ad_data.get('Fellesgjeld', 0)
-    cost = ad_data.get('Omkostninger', 0)
-    return ad_data['Totalpris'] - debt - cost
 
 
 def scrape_ad(finnkode):
@@ -85,15 +81,11 @@ def scrape_ad(finnkode):
 
     ad_data.update(_parse_data_lists(html))
 
-    ad_data['Prisantydning'] = _calc_price(ad_data)
 
     return ad_data
 
 
 if __name__ == '__main__':
-    if len(sys.argv) != 2:
-        print('Invalid number of arguments.\n\nUsage:\n$ python finn.py FINNKODE')
-        exit(1)
 
     ad_url = sys.argv[1]
     ad = scrape_ad(ad_url)
